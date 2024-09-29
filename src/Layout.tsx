@@ -3,7 +3,7 @@ import Icon from "./components/Icon";
 import SideLink from "./components/SideLink";
 import { Outlet, useLocation } from "react-router-dom";
 import NotifButton from "./components/NotifButton";
-import QuickAddTask from "./components/QuickAddTask";
+import QuickAddTask from "./quick-add/QuickAdd";
 
 const Layout = () => {
   const [toggleSideBar, setToggleSideBar] = useState(true);
@@ -13,9 +13,11 @@ const Layout = () => {
   return (
     <div className="w-full h-screen flex">
       <div
-        className={`${
-          toggleSideBar ? "p-3 translate-x-[0%]" : "  translate-x-[-100%] w-0"
-        } bg-[#FCFAF8] flex w-72 flex-col gap-4 transition-all `}
+        className={` ${
+          toggleSideBar
+            ? "w-72 p-3 translate-x-[0%] "
+            : "  translate-x-[-100%] w-0"
+        } bg-[#FCFAF8] flex  flex-col gap-4 transition-all duration-500`}
       >
         <div
           className={`${
@@ -44,7 +46,7 @@ const Layout = () => {
             </span>
           </div>
         </div>
-        <ul className={`${toggleSideBar ? "block" : "hidden"}`}>
+        <ul className={` ${toggleSideBar ? "block" : "hidden"}`}>
           <button
             onClick={() => {
               setToggleQuickadd(!toggleQuickadd);
@@ -80,7 +82,7 @@ const Layout = () => {
         </ul>
       </div>
       <div className="flex-1">
-        <div className="p-3">
+        <div className="h-10 p-3">
           {!toggleSideBar && (
             <span className="flex w-fit hover:bg-[#F2EFED] items-center cursor-pointer p-1 rounded transition-all">
               <Icon
