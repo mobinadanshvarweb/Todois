@@ -1,5 +1,5 @@
 # todoist
-[Demo](https://todois-q1eg.vercel.app/app)
+[Demo](https://todois.vercel.app)
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
