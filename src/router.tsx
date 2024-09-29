@@ -5,11 +5,11 @@ import App from "./App";
 import Inbox from "./inbox/Inbox";
 import Today from "./today/Today";
 import Notifications from "./notification/Notifications";
-import ErrorPage from "./components/ErrorPage";
+// import ErrorPage from "./components/ErrorPage";
 const router = createBrowserRouter([
   {
     element: <Layout />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
     children: [
       { path: "/", element: <App /> },
       { path: "/app/inbox", element: <Inbox /> },
