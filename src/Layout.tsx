@@ -99,7 +99,7 @@ const Layout = () => {
         )}
         <Outlet />
       </div>
-      <div className="fixed bottom-0 left-0 w-full flex justify-between md:hidden p-3 bg-[#BB1F00]">
+      <div className="fixed bottom-0 left-0 w-full flex justify-between md:hidden p-3 bg-[#FCFAF8]">
         <SideLink
           text="Inbox"
           icon={`${
