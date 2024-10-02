@@ -16,7 +16,12 @@ const AddTask = ({
   });
   const queryClient = useQueryClient();
   return (
-    <div className={classname}>
+    <div
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+      className={classname}
+    >
       {" "}
       <div className="p-3">
         <textarea
@@ -56,7 +61,7 @@ const AddTask = ({
         <div className="flex-1"></div>
         <div className="flex gap-4">
           <button
-            className="min-w-[68px] max-w-[100%] rounded-md p-[6px] text-sm bg-[#F5F5F5] text-[#525252] hover:bg-[#E5E5E5]"
+            className="hidden md:flex justify-center items-center min-w-[68px] max-w-[100%] rounded-md p-[6px] text-sm bg-[#F5F5F5] text-[#525252] hover:bg-[#E5E5E5]"
             onClick={() => {
               setToggleQuickadd(false);
             }}
@@ -64,7 +69,7 @@ const AddTask = ({
             Cancel
           </button>
           <button
-            className={`"min-w-[68px] max-w-[100%] rounded-md border p-[6px] text-sm  text-white   ${
+            className={`hidden md:flex justify-center items-center min-w-[68px] max-w-[100%] rounded-md border p-[6px] text-sm  text-white   ${
               data?.title
                 ? " cursor-pointer bg-[#DC4C3E] "
                 : "  cursor-not-allowed  bg-[#EDA59E] "
@@ -78,6 +83,22 @@ const AddTask = ({
             }}
           >
             Add task
+          </button>
+          <button
+            className={`flex md:hidden justify-center px-3 items-center rounded-md border p-[8px] text-sm  text-white   ${
+              data?.title
+                ? " cursor-pointer bg-[#DC4C3E] "
+                : "  cursor-not-allowed  bg-[#EDA59E] "
+            }"`}
+            disabled={data.title ? false : true}
+            onClick={async () => {
+              await postTask({ data });
+              setData({ title: "", description: "" });
+              queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
+              setToggleQuickadd(false);
+            }}
+          >
+            <Icon height={20} width={20} urlIcon="/icons/send.svg" />
           </button>
         </div>
       </div>

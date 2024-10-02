@@ -4,6 +4,7 @@ import getTask from "../api/getTask";
 import { useState } from "react";
 import NewAddTask from "./NewAddTask";
 import AddTask from "../components/AddTask";
+import Icon from "../components/Icon";
 
 const ListInbox = () => {
   const [toggleQuickadd, setToggleQuickadd] = useState(false);
@@ -26,8 +27,15 @@ const ListInbox = () => {
             />
           </div>
           {toggleQuickadd && (
-            <div className="fixed z-30 p-3  shadow-lg rounded-t-lg bottom-0 left-0 w-full bg-white">
-              <AddTask setToggleQuickadd={setToggleQuickadd} />
+            <div
+              onClick={() => {
+                setToggleQuickadd(false);
+              }}
+              className="w-full h-full fixed z-30  left-0 top-0"
+            >
+              <div className="fixed z-40 p-3  shadow-lg rounded-t-lg bottom-0 left-0 w-full bg-white">
+                <AddTask setToggleQuickadd={setToggleQuickadd} />
+              </div>
             </div>
           )}
           <div className="flex flex-col justify-center h-[80%]  items-center">
@@ -65,18 +73,34 @@ const ListInbox = () => {
         )
       )}
       {data?.length > 0 && (
-        <NewAddTask
-          setToggleQuickadd={setToggleQuickadd}
-          toggleQuickadd={toggleQuickadd}
-        />
+        <>
+          <div className="hidden md:block">
+            <NewAddTask
+              setToggleQuickadd={setToggleQuickadd}
+              toggleQuickadd={toggleQuickadd}
+            />
+          </div>
+          {toggleQuickadd && (
+            <div
+              onClick={() => {
+                setToggleQuickadd(false);
+              }}
+              className="w-full h-full fixed z-30  left-0 top-0"
+            >
+              <div className="fixed z-40 p-3  shadow-lg rounded-t-lg bottom-0 left-0 w-full bg-white">
+                <AddTask setToggleQuickadd={setToggleQuickadd} />
+              </div>
+            </div>
+          )}
+        </>
       )}
       <div
         onClick={() => {
           setToggleQuickadd(!toggleQuickadd);
         }}
-        className="fixed bottom-20 right-4 rounded-full flex md:hidden justify-center items-center text-white w-12 h-12 bg-[#DD4C3E] z-20 cursor-pointer"
+        className="fixed bottom-20 right-4 rounded-xl flex md:hidden justify-center items-center shadow-2xl w-12 h-12 bg-[#cf3f32] z-20 cursor-pointer"
       >
-        +
+        <Icon height={20} width={20} urlIcon="/icons/addwhite.svg" />
       </div>
     </div>
   );
