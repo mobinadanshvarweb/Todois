@@ -3,6 +3,7 @@ import CardInbox from "./CardInbox";
 import getTask from "../api/getTask";
 import { useState } from "react";
 import NewAddTask from "./NewAddTask";
+import AddTask from "../components/AddTask";
 
 const ListInbox = () => {
   const [toggleQuickadd, setToggleQuickadd] = useState(false);
@@ -15,14 +16,21 @@ const ListInbox = () => {
 
   if (error) return "An error has occurred: " + error.message;
   return (
-    <div>
+    <div className="h-[95%] flex flex-col  relative ">
       {data?.length == 0 && (
         <>
-          <NewAddTask
-            setToggleQuickadd={setToggleQuickadd}
-            toggleQuickadd={toggleQuickadd}
-          />
-          <div className="p-3 flex flex-col justify-center items-center">
+          <div className="hidden md:block">
+            <NewAddTask
+              setToggleQuickadd={setToggleQuickadd}
+              toggleQuickadd={toggleQuickadd}
+            />
+          </div>
+          {toggleQuickadd && (
+            <div className="fixed z-30 p-3  shadow-lg rounded-t-lg bottom-0 left-0 w-full bg-white">
+              <AddTask setToggleQuickadd={setToggleQuickadd} />
+            </div>
+          )}
+          <div className="flex flex-col justify-center h-[80%]  items-center">
             <img
               src="/img/empty-inbox.png"
               alt="pic"
@@ -62,6 +70,14 @@ const ListInbox = () => {
           toggleQuickadd={toggleQuickadd}
         />
       )}
+      <div
+        onClick={() => {
+          setToggleQuickadd(!toggleQuickadd);
+        }}
+        className="fixed bottom-20 right-4 rounded-full flex md:hidden justify-center items-center text-white w-12 h-12 bg-[#DD4C3E] z-20 cursor-pointer"
+      >
+        +
+      </div>
     </div>
   );
 };
