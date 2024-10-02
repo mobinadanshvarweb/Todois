@@ -11,9 +11,9 @@ const Layout = () => {
 
   const location = useLocation();
   return (
-    <div className="w-full h-screen flex">
+    <div className="w-full h-screen flex  relative">
       <div
-        className={` ${
+        className={`hidden md:block ${
           toggleSideBar
             ? "w-72 p-3 translate-x-[0%] "
             : "  translate-x-[-100%] w-0"
@@ -82,9 +82,9 @@ const Layout = () => {
         </ul>
       </div>
       <div className="flex-1">
-        <div className="h-10 p-3">
+        <div className="md:h-10 md:p-3">
           {!toggleSideBar && (
-            <span className="flex w-fit hover:bg-[#F2EFED] items-center cursor-pointer p-1 rounded transition-all">
+            <span className="hidden md:flex w-fit hover:bg-[#F2EFED] items-center cursor-pointer p-1 rounded transition-all">
               <Icon
                 urlIcon="/icons/toggle.svg"
                 width={25}
@@ -98,6 +98,28 @@ const Layout = () => {
           <QuickAddTask setToggleQuickadd={setToggleQuickadd} />
         )}
         <Outlet />
+      </div>
+      <div className="fixed bottom-0 left-0 w-full flex justify-between md:hidden p-3 bg-[#BB1F00]">
+        <SideLink
+          text="Inbox"
+          icon={`${
+            location.pathname.endsWith("inbox")
+              ? "/icons/inbox-color.svg"
+              : "/icons/inbox.svg"
+          }`}
+          href="/app/inbox"
+          isActive={location.pathname.endsWith("inbox")}
+        />
+        <SideLink
+          text="Today"
+          icon={
+            location.pathname.endsWith("today")
+              ? "/icons/today-color.svg"
+              : "/icons/today.svg"
+          }
+          href="/app/today"
+          isActive={location.pathname.endsWith("today")}
+        />
       </div>
     </div>
   );
