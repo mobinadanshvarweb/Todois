@@ -33,7 +33,7 @@ const ListInbox = () => {
               }}
               className="w-full h-full fixed z-30  left-0 top-0"
             >
-              <div className="fixed z-40 p-3  shadow-lg rounded-t-lg bottom-0 left-0 w-full bg-white">
+              <div className="md:hidden fixed z-40 p-3  shadow-lg rounded-t-lg bottom-0 left-0 w-full bg-white">
                 <AddTask setToggleQuickadd={setToggleQuickadd} />
               </div>
             </div>
@@ -87,7 +87,7 @@ const ListInbox = () => {
               }}
               className="w-full h-full fixed z-30  left-0 top-0"
             >
-              <div className="fixed z-40 p-3  shadow-lg rounded-t-lg bottom-0 left-0 w-full bg-white">
+              <div className="md:hidden fixed z-40 p-3  shadow-lg rounded-t-lg bottom-0 left-0 w-full bg-white">
                 <AddTask setToggleQuickadd={setToggleQuickadd} />
               </div>
             </div>

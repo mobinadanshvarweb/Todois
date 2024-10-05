@@ -5,9 +5,11 @@ import postTask from "../api/postTask";
 
 const AddTask = ({
   setToggleQuickadd,
+  setToggleEdit,
   classname,
 }: {
   setToggleQuickadd: (toggle: boolean) => void;
+  setToggleEdit?: (edit: boolean) => void;
   classname?: string;
 }) => {
   const [data, setData] = useState({
@@ -20,7 +22,7 @@ const AddTask = ({
       onClick={(e) => {
         e.stopPropagation();
       }}
-      className={classname}
+      className={`${classname} w-full`}
     >
       {" "}
       <div className="p-3">
@@ -64,6 +66,7 @@ const AddTask = ({
             className="hidden md:flex justify-center items-center min-w-[68px] max-w-[100%] rounded-md p-[6px] text-sm bg-[#F5F5F5] text-[#525252] hover:bg-[#E5E5E5]"
             onClick={() => {
               setToggleQuickadd(false);
+              setToggleEdit(false);
             }}
           >
             Cancel
