@@ -9,7 +9,7 @@ const AddTask = ({
   classname,
 }: {
   setToggleQuickadd: (toggle: boolean) => void;
-  setToggleEdit?: (edit: boolean) => void;
+  setToggleEdit?: any;
   classname?: string;
 }) => {
   const [data, setData] = useState({
