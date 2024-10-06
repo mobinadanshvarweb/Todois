@@ -16,8 +16,8 @@ const AddTask = ({
   setToggleEdit?: any;
   classname?: string;
   id?: string;
-  content: string;
-  description: string;
+  content?: string;
+  description?: string;
 }) => {
   const [data, setData] = useState({
     title: "",
