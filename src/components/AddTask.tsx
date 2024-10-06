@@ -2,19 +2,30 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import Icon from "./Icon";
 import postTask from "../api/postTask";
+import updateTask from "../api/updateTask";
 
 const AddTask = ({
   setToggleQuickadd,
   setToggleEdit,
   classname,
+  id,
+  content,
+  description,
 }: {
   setToggleQuickadd: (toggle: boolean) => void;
   setToggleEdit?: any;
   classname?: string;
+  id?: string;
+  content: string;
+  description: string;
 }) => {
   const [data, setData] = useState({
     title: "",
     description: "",
+  });
+  const [editedData, setEditedData] = useState({
+    editedTitle: content,
+    editedDescription: description,
   });
   const queryClient = useQueryClient();
   return (
@@ -30,17 +41,31 @@ const AddTask = ({
           className="w-full h-[25px] overflow-y-clip resize-none outline-none"
           placeholder="Task name"
           onChange={(e) => {
-            setData({ title: e.target.value, description: data.description });
+            if (id) {
+              setEditedData({
+                editedTitle: e.target.value,
+                editedDescription: editedData.editedDescription,
+              });
+            } else {
+              setData({ title: e.target.value, description: data.description });
+            }
           }}
-          value={data.title}
+          value={id ? editedData.editedTitle : data.title}
         ></textarea>
         <textarea
           className="w-full resize-none outline-none text-sm"
           placeholder="Description"
           onChange={(e) => {
-            setData({ description: e.target.value, title: data.title });
+            if (id) {
+              setEditedData({
+                editedDescription: e.target.value,
+                editedTitle: editedData.editedTitle,
+              });
+            } else {
+              setData({ description: e.target.value, title: data.title });
+            }
           }}
-          value={data.description}
+          value={id ? editedData.editedDescription : data.description}
         ></textarea>
         <div className="flex gap-2">
           <div className="p-[6px] flex gap-1 justify-center items-center border rounded text-[#666666] text-sm cursor-pointer hover:bg-[#F5F5F5]">
@@ -67,22 +92,32 @@ const AddTask = ({
             onClick={() => {
               setToggleQuickadd(false);
               setToggleEdit(false);
+              setEditedData({
+                editedDescription: description,
+                editedTitle: description,
+              });
             }}
           >
             Cancel
           </button>
           <button
             className={`hidden md:flex justify-center items-center min-w-[68px] max-w-[100%] rounded-md border p-[6px] text-sm  text-white   ${
-              data?.title
+              data?.title || content
                 ? " cursor-pointer bg-[#DC4C3E] "
                 : "  cursor-not-allowed  bg-[#EDA59E] "
             }"`}
-            disabled={data.title ? false : true}
+            disabled={data.title || content ? false : true}
             onClick={async () => {
-              await postTask({ data });
-              setData({ title: "", description: "" });
-              queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
-              setToggleQuickadd(false);
+              if (id) {
+                await updateTask({ editedData, id });
+                setToggleEdit(false);
+                queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
+              } else {
+                await postTask({ data });
+                setData({ title: "", description: "" });
+                queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
+                setToggleQuickadd(false);
+              }
             }}
           >
             Add task
