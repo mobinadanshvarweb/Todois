@@ -1,3 +1,4 @@
+const url = "https://api.todoist.com/rest/v2/tasks";
 export default async function updateTask({
   editedData,
   id,
@@ -5,13 +6,8 @@ export default async function updateTask({
   editedData: any;
   id: string | undefined;
 }) {
-  let url = "https://api.todoist.com/rest/v2/tasks";
-  if (id) {
-    url = `${url}/${id}`;
-    return url;
-  }
   try {
-    await fetch(`${url}`, {
+    await fetch(`${url}/${id}`, {
       method: "POST",
       headers: {
         Authorization: "Bearer 9f5506136a536559b0b0cbbe664dcf2d0b69f2a1",
