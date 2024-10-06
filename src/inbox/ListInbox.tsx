@@ -31,7 +31,7 @@ const ListInbox = () => {
               onClick={() => {
                 setToggleQuickadd(false);
               }}
-              className="w-full h-full fixed z-30  left-0 top-0"
+              className="w-full h-full fixed z-30  md:hidden left-0 top-0"
             >
               <div className="md:hidden fixed z-40 p-3  shadow-lg rounded-t-lg bottom-0 left-0 w-full bg-white">
                 <AddTask setToggleQuickadd={setToggleQuickadd} />
@@ -85,7 +85,7 @@ const ListInbox = () => {
               onClick={() => {
                 setToggleQuickadd(false);
               }}
-              className="w-full h-full fixed z-30  left-0 top-0"
+              className="w-full h-full fixed md:hidden z-30  left-0 top-0"
             >
               <div className="md:hidden fixed z-40 p-3  shadow-lg rounded-t-lg bottom-0 left-0 w-full bg-white">
                 <AddTask setToggleQuickadd={setToggleQuickadd} />

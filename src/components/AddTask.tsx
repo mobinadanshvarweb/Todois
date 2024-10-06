@@ -124,16 +124,22 @@ const AddTask = ({
           </button>
           <button
             className={`flex md:hidden justify-center px-3 items-center rounded-md border p-[8px] text-sm  text-white   ${
-              data?.title
+              data?.title || content
                 ? " cursor-pointer bg-[#DC4C3E] "
                 : "  cursor-not-allowed  bg-[#EDA59E] "
             }"`}
-            disabled={data.title ? false : true}
+            disabled={data?.title || content ? false : true}
             onClick={async () => {
-              await postTask({ data });
-              setData({ title: "", description: "" });
-              queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
-              setToggleQuickadd(false);
+              if (id) {
+                await updateTask({ editedData, id });
+                setToggleEdit(false);
+                queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
+              } else {
+                await postTask({ data });
+                setData({ title: "", description: "" });
+                queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
+                setToggleQuickadd(false);
+              }
             }}
           >
             <Icon height={20} width={20} urlIcon="/icons/send.svg" />
