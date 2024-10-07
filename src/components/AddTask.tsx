@@ -33,7 +33,7 @@ const AddTask = ({
       onClick={(e) => {
         e.stopPropagation();
       }}
-      className={`${classname} w-full`}
+      className={`${classname} w-full bg-red-300`}
     >
       {" "}
       <div className="p-3">
@@ -94,7 +94,7 @@ const AddTask = ({
               setToggleEdit(false);
               setEditedData({
                 editedDescription: description,
-                editedTitle: description,
+                editedTitle: content,
               });
             }}
           >
