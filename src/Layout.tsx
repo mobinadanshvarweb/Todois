@@ -4,20 +4,20 @@ import SideLink from "./components/SideLink";
 import { Outlet, useLocation } from "react-router-dom";
 import NotifButton from "./components/NotifButton";
 import QuickAddTask from "./quick-add/QuickAdd";
+import MyProjects from "./projec/MyProjects";
 
 const Layout = () => {
   const [toggleSideBar, setToggleSideBar] = useState(true);
   const [toggleQuickadd, setToggleQuickadd] = useState(false);
-
   const location = useLocation();
   return (
-    <div className="w-full h-screen flex  relative">
+    <div className="w-full  flex  relative overflow-x-hidden">
       <div
         className={`hidden md:block ${
           toggleSideBar
             ? "w-72 p-3 translate-x-[0%] "
             : "  translate-x-[-100%] w-0"
-        } bg-[#FCFAF8] flex  flex-col gap-4 transition-all duration-500`}
+        } bg-[#FCFAF8] flex  flex-col  transition-all duration-500 `}
       >
         <div
           className={`${
@@ -80,6 +80,7 @@ const Layout = () => {
           {/* <SideLink text="Upcoming" icon="/icons/upcoming.svg" href="/" />
           <SideLink text="Filters & Labels" icon="/icons/filter.svg" href="/" /> */}
         </ul>
+        <MyProjects />
       </div>
       <div className="flex-1">
         <div className="md:h-10 md:p-3">
