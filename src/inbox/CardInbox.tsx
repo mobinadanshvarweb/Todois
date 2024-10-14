@@ -2,6 +2,8 @@ import { useState } from "react";
 import Icon from "../components/Icon";
 import ConfirmeMessage from "../components/ConfirmeMessage";
 import EditInbox from "./EditInbox";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import deleteTask from "../api/deleteTask";
 
 const CardInbox = ({
   content,
@@ -15,6 +17,16 @@ const CardInbox = ({
   const [toggleConfirmMessage, setToggleConfirmMessage] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(false);
   const [toggleQuickadd, setToggleQuickadd] = useState(false);
+  const queryClient = useQueryClient();
+  const deleteTaskMutation = useMutation({
+    mutationFn: deleteTask,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
+    },
+    onError: () => {
+      queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
+    },
+  });
   return (
     <div>
       <div
@@ -39,7 +51,6 @@ const CardInbox = ({
               onClick={() => {
                 setToggleEdit(!toggleEdit);
                 setToggleQuickadd(true);
-                console.log("hii", toggleQuickadd);
               }}
             >
               <Icon height={17} width={17} urlIcon="/icons/pen.svg" />
@@ -51,6 +62,7 @@ const CardInbox = ({
 
         {toggleConfirmMessage && (
           <ConfirmeMessage
+            deleteTaskMutation={deleteTaskMutation}
             setToggleConfirmMessage={setToggleConfirmMessage}
             task={content}
             id={id}

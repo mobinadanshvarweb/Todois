@@ -16,7 +16,8 @@ const App = () => {
         <li>9comment</li>
         <li>10how to duplicate sth for example a task</li>
         <li>11compelete a task</li>
-        <li>12rightclick</li>
+        <li className="line-through mr-1">12rightclick</li>
+        <li>13Name of chrome url</li>
       </ul>
     </div>
   );

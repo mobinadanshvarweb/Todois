@@ -91,12 +91,17 @@ const AddProject = ({
             Cancel
           </button>
           <button
+            disabled={projectData.name != "" ? false : true}
             onClick={async () => {
               await postProject({ projectData });
-              queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
+              queryClient.invalidateQueries({ queryKey: ["projects"] });
               setAddProject(false);
             }}
-            className={`hidden md:flex justify-center items-center min-w-[68px] max-w-[100%] rounded-md border p-[6px] text-sm  text-white  
+            className={`hidden md:flex justify-center items-center min-w-[68px] max-w-[100%] rounded-md border p-[6px] text-sm text-white  ${
+              projectData.name != ""
+                ? " cursor-pointer bg-[#DC4C3E] "
+                : "  cursor-not-allowed  bg-[#EDA59E] "
+            }  
                `}
           >
             Add task

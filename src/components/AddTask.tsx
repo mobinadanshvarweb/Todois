@@ -33,7 +33,7 @@ const AddTask = ({
       onClick={(e) => {
         e.stopPropagation();
       }}
-      className={`${classname} w-full bg-red-300`}
+      className={`${classname} w-full `}
     >
       {" "}
       <div className="p-3">

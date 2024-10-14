@@ -6,6 +6,7 @@ import Inbox from "./inbox/Inbox";
 import Today from "./today/Today";
 import Notifications from "./notification/Notifications";
 import ActiveProject from "./projec/active/ActiveProject";
+import ProjectDetail from "./projec/ProjectDetail";
 // import ErrorPage from "./components/ErrorPage";
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
       { path: "/app/what", element: <App /> },
       { path: "/app/notification", element: <Notifications /> },
       { path: "/app/projects/active", element: <ActiveProject /> },
-      { path: "/app/projects/:id", element: <App /> },
+      { path: "/app/projects/:id", element: <ProjectDetail /> },
     ],
   },
   {
