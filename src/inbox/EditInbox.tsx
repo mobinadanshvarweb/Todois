@@ -15,8 +15,6 @@ const EditInbox = ({
   content: string;
   description: string;
 }) => {
-  console.log(toggleQuickadd, "toggleQuickAdd");
-
   return (
     <div
       className={`w-full ${

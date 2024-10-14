@@ -11,7 +11,6 @@ export default async function getTask() {
     }
 
     const json = await response.json();
-    console.log(json);
     return json;
   } catch {
     console.error("somthing went wrong");

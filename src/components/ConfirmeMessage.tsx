@@ -1,25 +1,14 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import deleteTask from "../api/deleteTask";
-
 const ConfirmeMessage = ({
   setToggleConfirmMessage,
+  deleteTaskMutation,
   task,
   id,
 }: {
   setToggleConfirmMessage: (x: boolean) => void;
+  deleteTaskMutation: any;
   task: string;
   id: string;
 }) => {
-  const queryClient = useQueryClient();
-  const deleteTaskMutation = useMutation({
-    mutationFn: deleteTask,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
-    },
-    onError: () => {
-      queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
-    },
-  });
   return (
     <div className="fixed w-full cursor-default h-full z-20 backdrop-blur top-0 left-0 flex justify-center  bg-[#7F7F7F]/[0.60]">
       <div className="w-[447px] h-[117px] bg-white rounded-lg flex flex-col shadow mt-20 p-3">
@@ -28,7 +17,8 @@ const ConfirmeMessage = ({
         </p>
         <div className="flex justify-end gap-4">
           <button
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               setToggleConfirmMessage(false);
             }}
             className="rounded-[6px]  min-w-[68px] bg-[#F5F5F5] py-1 flex items-center justify-center text-[#444444]  hover:bg-[#E5E5E5]"
@@ -36,7 +26,8 @@ const ConfirmeMessage = ({
             Cancel
           </button>
           <button
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               deleteTaskMutation.mutate(id);
               setToggleConfirmMessage(false);
             }}

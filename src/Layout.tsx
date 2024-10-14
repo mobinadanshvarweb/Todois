@@ -80,7 +80,7 @@ const Layout = () => {
           {/* <SideLink text="Upcoming" icon="/icons/upcoming.svg" href="/" />
           <SideLink text="Filters & Labels" icon="/icons/filter.svg" href="/" /> */}
         </ul>
-        <MyProjects />
+        <MyProjects isActive={location.pathname.endsWith("active")} />
       </div>
       <div className="flex-1">
         <div className="md:h-10 md:p-3">
