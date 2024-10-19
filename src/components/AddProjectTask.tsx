@@ -4,7 +4,7 @@ import Icon from "./Icon";
 import postTask from "../api/postTask";
 import updateTask from "../api/updateTask";
 
-const AddTask = ({
+const AddProjectTask = ({
   setToggleQuickadd,
   setToggleEdit,
   classname,
@@ -21,17 +21,13 @@ const AddTask = ({
   description?: string;
   projectId?: string;
 }) => {
-  console.log("render");
-
   console.log(projectId, "projectIDDDD");
-  const newId = projectId;
-  console.log(newId, "newIDD");
+
   const [data, setData] = useState({
-    project_id: newId,
+    project_id: projectId,
     title: "",
     description: "",
   });
-  console.log("dataaa", data);
   const [editedData, setEditedData] = useState({
     editedTitle: content,
     editedDescription: description,
@@ -57,10 +53,9 @@ const AddTask = ({
               });
             } else {
               setData({
-                ...data,
-                // project_id: projectId,
+                project_id: projectId,
                 title: e.target.value,
-                // description: data.description,
+                description: data.description,
               });
             }
           }}
@@ -77,10 +72,9 @@ const AddTask = ({
               });
             } else {
               setData({
-                ...data,
-                // project_id: projectId,
+                project_id: projectId,
                 description: e.target.value,
-                // title: data.title,
+                title: data.title,
               });
             }
           }}
@@ -132,10 +126,8 @@ const AddTask = ({
                 setToggleEdit(false);
                 queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
               } else {
-                console.log("posting data", data);
-
                 await postTask({ data });
-                setData({ project_id: newId, title: "", description: "" });
+                setData({ project_id: projectId, title: "", description: "" });
                 queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
                 setToggleQuickadd(false);
               }
@@ -157,7 +149,7 @@ const AddTask = ({
                 queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
               } else {
                 await postTask({ data });
-                setData({ project_id: newId, title: "", description: "" });
+                setData({ project_id: projectId, title: "", description: "" });
                 queryClient.invalidateQueries({ queryKey: ["inbox-task"] });
                 setToggleQuickadd(false);
               }
@@ -171,4 +163,4 @@ const AddTask = ({
   );
 };
 
-export default AddTask;
+export default AddProjectTask;

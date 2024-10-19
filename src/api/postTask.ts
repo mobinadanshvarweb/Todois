@@ -2,8 +2,10 @@ const url = "https://api.todoist.com/rest/v2/tasks";
 export default async function postTask({
   data,
 }: {
-  data: { title: string; description: string };
+  data: { title: string; description: string; projectId?: string };
 }) {
+  console.log(data, "post task");
+
   try {
     await fetch(url, {
       method: "POST",
@@ -12,6 +14,7 @@ export default async function postTask({
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        project_id: data.projectId,
         content: data.title,
         description: data.description,
       }),

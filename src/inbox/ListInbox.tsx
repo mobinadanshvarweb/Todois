@@ -44,12 +44,14 @@ const ListInbox = () => {
               alt="pic"
               className="w-56 h-52 object-cover"
             />
-            <p className="font-[500]">Your peace of mind is priceless</p>
+            <p className="font-[500] text-center">
+              Your peace of mind is priceless
+            </p>
             <p className="text-center text-sm mt-2">
               Well done! All your tasks are organized in <br /> the right place.
             </p>
             <a
-              className="flex items-center mt-8 underline decoration-[#dc4c3e] text-[#dc4c3e]"
+              className="flex text-center items-center mt-8 underline decoration-[#dc4c3e] text-[#dc4c3e]"
               href="https://todoist.com/help/articles/360000028960"
               rel="noopener noreferrer"
               target="_blank"
@@ -98,7 +100,7 @@ const ListInbox = () => {
         onClick={() => {
           setToggleQuickadd(!toggleQuickadd);
         }}
-        className="fixed bottom-20 right-4 rounded-xl flex md:hidden justify-center items-center shadow-2xl w-12 h-12 bg-[#cf3f32] z-20 cursor-pointer"
+        className="fixed z-10 bottom-20 right-4 rounded-xl flex md:hidden justify-center items-center shadow-2xl w-12 h-12 bg-[#cf3f32] cursor-pointer"
       >
         <Icon height={20} width={20} urlIcon="/icons/addwhite.svg" />
       </div>
