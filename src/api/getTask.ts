@@ -1,5 +1,5 @@
+const url = "https://api.todoist.com/rest/v2/tasks";
 export default async function getTask() {
-  const url = "https://api.todoist.com/rest/v2/tasks";
   try {
     const response = await fetch(url, {
       headers: {
