@@ -18,6 +18,8 @@ const CardProjects: FC<CardProjectsProps> = ({
   isActive,
   toggleMenu,
 }) => {
+  console.log(id, "project id");
+
   const navigate = useNavigate();
   const [toggleConfirmMessage, setToggleConfirmMessage] = useState(false);
   const queryClient = useQueryClient();

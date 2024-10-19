@@ -13,7 +13,7 @@ const Layout = () => {
   return (
     <div className="w-full  flex  relative overflow-x-hidden">
       <div
-        className={`hidden md:block ${
+        className={`hidden md:block  ${
           toggleSideBar
             ? "w-72 p-3 translate-x-[0%] "
             : "  translate-x-[-100%] w-0"
@@ -101,26 +101,29 @@ const Layout = () => {
         <Outlet />
       </div>
       <div className="fixed bottom-0 left-0 w-full flex justify-between md:hidden p-3 bg-[#FCFAF8]">
-        <SideLink
-          text="Inbox"
-          icon={`${
-            location.pathname.endsWith("inbox")
-              ? "/icons/inbox-color.svg"
-              : "/icons/inbox.svg"
-          }`}
-          href="/app/inbox"
-          isActive={location.pathname.endsWith("inbox")}
-        />
-        <SideLink
-          text="Today"
-          icon={
-            location.pathname.endsWith("today")
-              ? "/icons/today-color.svg"
-              : "/icons/today.svg"
-          }
-          href="/app/today"
-          isActive={location.pathname.endsWith("today")}
-        />
+        <div className="w-full items-center flex justify-between">
+          <SideLink
+            text="Inbox"
+            icon={`${
+              location.pathname.endsWith("inbox")
+                ? "/icons/inbox-color.svg"
+                : "/icons/inbox.svg"
+            }`}
+            href="/app/inbox"
+            isActive={location.pathname.endsWith("inbox")}
+          />
+          <SideLink
+            text="Today"
+            icon={
+              location.pathname.endsWith("today")
+                ? "/icons/today-color.svg"
+                : "/icons/today.svg"
+            }
+            href="/app/today"
+            isActive={location.pathname.endsWith("today")}
+          />
+          <MyProjects isActive={location.pathname.endsWith("active")} />
+        </div>
       </div>
     </div>
   );

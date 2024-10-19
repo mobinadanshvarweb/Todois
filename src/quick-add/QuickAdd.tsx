@@ -10,7 +10,7 @@ const QuickAddTask = ({
       onClick={() => {
         setToggleQuickadd(false);
       }}
-      className="w-full h-screen flex justify-center items-center fixed z-10 top-0 left-0"
+      className="w-full h-screen flex justify-center items-center fixed z-30 top-0 left-0"
     >
       <div
         onClick={(e) => {

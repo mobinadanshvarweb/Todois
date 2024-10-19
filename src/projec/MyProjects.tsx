@@ -15,7 +15,7 @@ const MyProjects = ({ isActive }: { isActive: boolean }) => {
   });
 
   return (
-    <div className="flex flex-col  mt-4 p-1">
+    <div className="flex flex-col  md:mt-4 p-1">
       <div
         onClick={() => {
           navigate("/app/projects/active");
@@ -50,7 +50,7 @@ const MyProjects = ({ isActive }: { isActive: boolean }) => {
           <Link
             to={`/app/projects/${item.id}`}
             className={`
-               p-1 text-sm  flex items-center gap-2 hover:bg-[#F2EFED] rounded-lg
+             hidden  p-1 text-sm md:flex items-center gap-2 hover:bg-[#F2EFED] rounded-lg
                ${
                  location.pathname.endsWith(`${item.id}`)
                    ? `bg-[#FFEFE5] text-[#BB1F00] hover:bg-[#FFEFE5]`
