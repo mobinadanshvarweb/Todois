@@ -1,17 +1,19 @@
 import { useState } from "react";
 import Icon from "../components/Icon";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AddProject from "./AddProject";
 import { useQuery } from "@tanstack/react-query";
 import getProject from "../api/getProjects";
 
 const MyProjects = ({ isActive }: { isActive: boolean }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [addProject, setAddProject] = useState(false);
   const { data } = useQuery({
     queryKey: ["projects"],
     queryFn: async () => await getProject(),
   });
+
   return (
     <div className="flex flex-col  mt-4 p-1">
       <div
@@ -47,7 +49,14 @@ const MyProjects = ({ isActive }: { isActive: boolean }) => {
         return (
           <Link
             to={`/app/projects/${item.id}`}
-            className="p-1 text-sm  text-black flex items-center gap-2"
+            className={`
+               p-1 text-sm  flex items-center gap-2 hover:bg-[#F2EFED] rounded-lg
+               ${
+                 location.pathname.endsWith(`${item.id}`)
+                   ? `bg-[#FFEFE5] text-[#BB1F00] hover:bg-[#FFEFE5]`
+                   : `text-black`
+               } 
+               `}
             key={item.id}
           >
             <span className="text-lg text-gray-600 flex items-center">#</span>
